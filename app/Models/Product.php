@@ -13,4 +13,8 @@ class Product extends Model
     {
         return $this->hasOne(DiscountProduct::class, 'kode_produk', 'kode_produk');
     }
+
+    public function transaction() {
+        return $this->belongsTo(Transaction::class, 'kode_produk', 'kode_produk');
+    }
 }

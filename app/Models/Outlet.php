@@ -13,4 +13,8 @@ class Outlet extends Model
     {
         return $this->hasOne(DiscountOutlet::class, 'kode_outlet', 'kode_outlet');
     }
+
+    public function transaction() {
+        return $this->belongsTo(Transaction::class, 'kode_produk', 'kode_produk');
+    }
 }

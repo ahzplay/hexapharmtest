@@ -27,6 +27,10 @@
                                         <label >Product Name</label>
                                         <input type="text" class="form-control" id="product-name" >
                                     </div>
+                                    <div class="form-group">
+                                        <label >Product Price</label>
+                                        <input type="text" class="form-control" id="product-price" >
+                                    </div>
 
                                     <button type="button" id="add-btn" class="btn btn-primary" onclick="addProduct()">Add</button>
                                     <button type="button" id="update-btn" class="btn btn-warning" onclick="updateProduct()" style="display: none;">Update</button>
@@ -54,6 +58,7 @@
                             <th>Id</th>
                             <th>Kode Produk</th>
                             <th>Nama Produk</th>
+                            <th>Harga</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -82,9 +87,10 @@
                     {"data":"id"},
                     {"data":"kode_produk"},
                     {"data":"nama_produk"},
+                    {"data":"harga"},
                     {
                         "render": function (data, type, row) {
-                            return "<button onclick='editProduct("+row.id+", "+'"'+row.kode_produk+'"'+", "+'"'+row.nama_produk+'"'+")' class='btn-primary'>Update</button> <button onclick='deleteProduct("+row.id+")' class='btn-danger'>Delete</button>";
+                            return "<button onclick='editProduct("+row.id+", "+'"'+row.nama_produk+'"'+", "+'"'+row.kode_produk+'"'+", "+'"'+row.harga+'"'+")' class='btn-primary'>Update</button> <button onclick='deleteProduct("+row.id+")' class='btn-danger'>Delete</button>";
                         },
                     }
                 ],
@@ -112,7 +118,7 @@
                                 type: "POST",
                                 url: "{{url('api/create-product')}}",
                                 timeout: 150000,
-                                data: 'kodeProduk='+$('#product-code').val()+'&namaProduk='+$('#product-name').val(),
+                                data: 'kodeProduk='+$('#product-code').val()+'&namaProduk='+$('#product-name').val()+'&hargaProduk='+$('#product-price').val(),
                                 success: function(response){
                                     console.log(response);
 
@@ -125,6 +131,7 @@
                                                     table.draw();
                                                     $('#product-code').val('');
                                                     $('#product-name').val('');
+                                                    $('#product-price').val('');
                                                 }
                                             }
                                         });
@@ -193,10 +200,11 @@
             })
         }
 
-        function editProduct(id, productName, productCode) {
+        function editProduct(id, productName, productCode, price) {
             $('#product-id').val(id);
             $('#product-code').val(productCode);
             $('#product-name').val(productName);
+            $('#product-price').val(price);
             $('#add-btn').hide();
             $('#update-btn').show();
             $('#cancel-btn').show();
@@ -214,7 +222,7 @@
                             type: "POST",
                             url: "{{url('api/update-product')}}",
                             timeout: 150000,
-                            data: 'kodeProduk='+$('#product-code').val()+'&namaProduk='+$('#product-name').val()+'&id='+$('#product-id').val(),
+                            data: 'kodeProduk='+$('#product-code').val()+'&namaProduk='+$('#product-name').val()+'&id='+$('#product-id').val()+'&harga='+$('#product-price').val(),
                             success: function(response){
                                 console.log(response);
                                 if(response.status == 'success') {
@@ -255,6 +263,7 @@
             $('#collapseTwo').collapse('show');
             $('#product-code').val('');
             $('#product-name').val('');
+            $('#product-price').val('');
         }
     </script>
 @endsection

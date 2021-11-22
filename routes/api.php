@@ -42,4 +42,7 @@ Route::post('create-outlet-discount',[DiscountOutletController::class, 'createDi
 Route::get('fetch-discount-product',[DiscountProductController::class, 'fecthDiscountOutlets']);
 Route::post('create-product-discount',[DiscountProductController::class, 'createDiscount']);
 
+Route::get('fetch-transaction',[TransactionController::class, 'fetch']);
 Route::get('get-discount-avail',[TransactionController::class, 'getOutletDiscountAvail']);
+Route::get('get-product-discount',[TransactionController::class, 'getProductDiscount']);
+Route::post('create-transaction',[TransactionController::class, 'addTransaction']);

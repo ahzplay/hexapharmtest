@@ -65,7 +65,7 @@
                     </h2>
                 </div>
                 <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample" style="padding: 2%">
-                    <table id="discount-product-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <table id="trans-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>Id</th>
@@ -89,12 +89,12 @@
 @section('js-add-on')
     <script>
         $(document).ready(function() {
-            table = $('#discount-product-table').DataTable({
+            table = $('#trans-table').DataTable({
                 pageLength: 10,
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    "url"  : "{{url('api/fetch-discount-product')}}",
+                    "url"  : "{{url('api/fetch-transaction')}}",
                     "data" : {
                         "responseWish" : 'datatables',
                     }

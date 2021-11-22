@@ -34,6 +34,7 @@ class ProductController extends BaseController
                     'id' => $val->id,
                     'nama_produk' => $val->nama_produk,
                     'kode_produk' => $val->kode_produk,
+                    'harga' => $val->harga,
                 );
                 array_push($data, $dataTemp);
             }
@@ -67,6 +68,7 @@ class ProductController extends BaseController
         try {
             $this->product->kode_produk = $request->kodeProduk;
             $this->product->nama_produk = $request->namaProduk;
+            $this->product->harga = $request->hargaProduk;
             $this->product->save();
 
             if($this->product->id > 0) {
@@ -94,6 +96,7 @@ class ProductController extends BaseController
             $product = $this->product->find($request->id);
             $product->kode_produk = $request->kodeProduk;
             $product->nama_produk = $request->namaProduk;
+            $product->harga = $request->harga;
 
             if($product->save()) {
                 return response()->json(array(
